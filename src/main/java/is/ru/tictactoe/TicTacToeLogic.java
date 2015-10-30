@@ -28,10 +28,18 @@ public class TicTacToeLogic {
 		return grid;
 	}
 
-	public void insertNextTokenToGrid(int slotIndex) {
+	public void insertNextTokenToGrid(int slotIndex) throws SlotAlreadyFilledException {
+		checkIndex(slotIndex);
 		char token = (isPlayer1Turn == true) ? player1.getToken() : player2.getToken();
 		grid[slotIndex] = token;
 		isPlayer1Turn = !isPlayer1Turn;
+	}
+
+	private void checkIndex(int index) throws SlotAlreadyFilledException {
+		if(index < 0 || index > 8)
+			throw new IndexOutOfBoundsException("Index of slot ranges between 0 and 8. Invalid index: " + index);
+		else if(grid[index] != null) 
+			throw new SlotAlreadyFilledException("Slot already has token");
 	}
 
 }

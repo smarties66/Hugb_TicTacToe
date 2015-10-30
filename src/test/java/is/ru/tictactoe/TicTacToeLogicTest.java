@@ -36,7 +36,11 @@ public class TicTacToeLogicTest {
 		};
 
 		TicTacToeLogic logic = defaultLogic();
-		logic.insertNextTokenToGrid(4);
+		
+		try{
+			logic.insertNextTokenToGrid(4);
+		}catch(SlotAlreadyFilledException e) {}
+
 		assertArrayEquals(expectedGrid, logic.getGrid());
 	}
 
@@ -50,14 +54,46 @@ public class TicTacToeLogicTest {
 		};
 
 		TicTacToeLogic logic = defaultLogic();
-		logic.insertNextTokenToGrid(4);
+		
+		try{
+			logic.insertNextTokenToGrid(4);
+		}catch(SlotAlreadyFilledException e) {}
 
 		assertArrayEquals(expectedGrid, logic.getGrid());
 		
 		expectedGrid[8] = 'O';
-		logic.insertNextTokenToGrid(8);
+		
+		try{
+			logic.insertNextTokenToGrid(8);
+		}catch(SlotAlreadyFilledException e) {}
 
 		assertArrayEquals(expectedGrid, logic.getGrid());
+	}
 
+	@Test
+	public void testInsertTokenToSlotThatIsNotEmpty() {
+		TicTacToeLogic logic = defaultLogic();
+		
+		try{
+			logic.insertNextTokenToGrid(4);
+		}catch(SlotAlreadyFilledException e) {}
+
+		try {
+			logic.insertNextTokenToGrid(4);
+			fail("Should have thrown SlotAlreadyFilledException");
+		}catch(SlotAlreadyFilledException e) {
+			assertEquals("Slot already has token", e.getMessage());
+		}
+	}
+
+	@Test
+	public void testInsertTokenOutOfBounds() {
+		TicTacToeLogic logic = defaultLogic();
+		try{
+			logic.insertNextTokenToGrid(12);
+			fail("Should have thrown IndexOutOfBoundsException");
+		}catch(IndexOutOfBoundsException e) {
+			assertEquals("Index of slot ranges between 0 and 8. Invalid index: 12", e.getMessage());
+		}catch(Exception e){}
 	}
 }
