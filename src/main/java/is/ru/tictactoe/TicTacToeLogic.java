@@ -24,6 +24,14 @@ public class TicTacToeLogic {
 		grid = new Character[9];
 	}
 
+	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
+		this.player1 = player1;
+		this.player2 = player2;
+		this.player1.setToken('X');
+		this.player2.setToken('O');
+		this.grid = grid;
+	}
+
 	public Character[] getGrid() {
 		return grid;
 	}

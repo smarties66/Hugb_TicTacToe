@@ -96,4 +96,19 @@ public class TicTacToeLogicTest {
 			assertEquals("Index of slot ranges between 0 and 8. Invalid index: 12", e.getMessage());
 		}catch(Exception e){}
 	}
+
+	@Test
+	public void testSetTicTacToeLogicStateConstructor() {
+		Character[] inputGrid = 
+		{ 
+			'X', 'O', 'X', 
+			'O', 'O', 'X', 
+			'X', 'X', 'O',
+		};
+
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
+		assertArrayEquals(inputGrid, logic.getGrid());
+	}
 }
