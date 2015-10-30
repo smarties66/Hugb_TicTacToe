@@ -23,6 +23,9 @@ public class TicTacToeLogic {
 	}
 
 	private void init(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
+		if(grid.length != 9)
+			throw new IllegalArgumentException("TicTacToeGrid must be of size 9. Illegal Size: " + grid.length);
+		
 		this.player1 = player1;
 		this.player2 = player2;
 		this.player1.setToken('X');

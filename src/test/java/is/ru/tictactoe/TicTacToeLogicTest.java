@@ -111,4 +111,26 @@ public class TicTacToeLogicTest {
 		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
 		assertArrayEquals(inputGrid, logic.getGrid());
 	}
+
+	@Test
+	public void testInitWithInvalidSizeGrid() {
+		Character[] inputGrid = new Character[10];
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+
+		try {
+			TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
+			fail("Should have thrown IllegalArgumentException");
+		}catch(IllegalArgumentException e) {
+			assertEquals("TicTacToeGrid must be of size 9. Illegal Size: 10", e.getMessage());
+		}
+
+		inputGrid = new Character[7];
+		try {
+			TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
+			fail("Should have thrown IllegalArgumentException");
+		}catch(IllegalArgumentException e) {
+			assertEquals("TicTacToeGrid must be of size 9. Illegal Size: 7", e.getMessage());
+		}
+	}
 }
