@@ -17,6 +17,8 @@ public class TicTacToeLogic {
 	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2) {
 		this.player1 = player1;
 		this.player2 = player2;
+		this.player1.setToken('X');
+		this.player2.setToken('O');
 		roundCount = 0;
 		isPlayer1Turn = true;
 		grid = new Character[9];
@@ -27,7 +29,9 @@ public class TicTacToeLogic {
 	}
 
 	public void insertNextTokenToGrid(int slotIndex) {
-		grid[slotIndex] = 'X';
+		char token = (isPlayer1Turn == true) ? player1.getToken() : player2.getToken();
+		grid[slotIndex] = token;
+		isPlayer1Turn = !isPlayer1Turn;
 	}
 
 }
