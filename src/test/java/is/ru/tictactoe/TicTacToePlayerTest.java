@@ -14,4 +14,12 @@ public class TicTacToePlayerTest {
 		TicTacToePlayer player = new TicTacToePlayer("Svessi");
 		assertEquals("Svessi", player.getName());
 	}
+
+	@Test
+	public void testIncrementWinCount() {
+		TicTacToePlayer player = new TicTacToePlayer("Svessi");
+		assertEquals(0, player.getWinCount());
+		player.incrementWinCount();
+		assertEquals(1, player.getWinCount());
+	}
 }
