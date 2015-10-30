@@ -25,4 +25,9 @@ public class TicTacToeLogic {
 	public Character[] getGrid() {
 		return grid;
 	}
+
+	public void insertNextTokenToGrid(int slotIndex) {
+		grid[slotIndex] = 'X';
+	}
+
 }

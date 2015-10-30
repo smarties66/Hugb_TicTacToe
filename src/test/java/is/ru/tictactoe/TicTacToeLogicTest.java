@@ -25,4 +25,18 @@ public class TicTacToeLogicTest {
 		TicTacToeLogic logic = defaultLogic();
 		assertArrayEquals(expectedGrid, logic.getGrid());
 	}
+
+	@Test
+	public void testInsertNextTokenToGrid() {
+		Character[] expectedGrid = 
+		{ 
+			null, null, null, 
+			null,  'X', null, 
+			null, null, null,
+		};
+
+		TicTacToeLogic logic = defaultLogic();
+		logic.insertNextTokenToGrid(4);
+		assertArrayEquals(expectedGrid, logic.getGrid());
+	}
 }
