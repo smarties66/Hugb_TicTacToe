@@ -15,21 +15,21 @@ public class TicTacToeLogic {
 	*******************************/
 
 	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2) {
-		this.player1 = player1;
-		this.player2 = player2;
-		this.player1.setToken('X');
-		this.player2.setToken('O');
-		roundCount = 0;
-		isPlayer1Turn = true;
-		grid = new Character[9];
+		init(player1, player2, new Character[9], true);
 	}
 
 	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
+		init(player1, player2, grid, isPlayer1Turn);
+	}
+
+	private void init(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.player1.setToken('X');
 		this.player2.setToken('O');
 		this.grid = grid;
+		this.isPlayer1Turn = isPlayer1Turn;
+		roundCount = 0;
 	}
 
 	public Character[] getGrid() {
