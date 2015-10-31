@@ -160,4 +160,25 @@ public class TicTacToeLogicTest {
 		logic = new TicTacToeLogic(p1, p2, inputGrid2, true);
 		assertEquals(true, logic.isWin());
 	}
+
+	@Test
+	public void testIsWinWithInsert() {
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+		
+		Character[] inputGrid = 
+		{ 
+			'X', 'O', null, 
+			'O', 'X', 'X', 
+			'X', 'O', 'O',
+		};
+
+		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
+
+		try{
+			logic.insertNextTokenToGrid(2);
+		}catch(Exception e) {}
+
+		assertEquals(true, logic.isWin());
+	}
 }

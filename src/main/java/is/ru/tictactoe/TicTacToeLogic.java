@@ -51,6 +51,7 @@ public class TicTacToeLogic {
 		checkIndex(slotIndex);
 		char token = (isPlayer1Turn == true) ? player1.getToken() : player2.getToken();
 		grid[slotIndex] = token;
+		searchForWin();
 		isPlayer1Turn = !isPlayer1Turn;
 	}
 
@@ -67,7 +68,7 @@ public class TicTacToeLogic {
 
 	private void searchForWin() {
 		for(int[] i : possibleWins) {
-			if(grid[i[0]].equals(grid[i[1]]) && grid[i[1]].equals(grid[i[2]]))
+			if(grid[i[0]] != null && grid[i[0]].equals(grid[i[1]]) && grid[i[1]].equals(grid[i[2]]))
 				winnerToken = grid[i[0]];
 		}
 	}
