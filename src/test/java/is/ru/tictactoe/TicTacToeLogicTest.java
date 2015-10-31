@@ -275,4 +275,33 @@ public class TicTacToeLogicTest {
 
 		assertEquals(p2, logic.getPlayerWhoHasTurn());
 	}
+
+	@Test
+	public void testNewGame() {
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+		
+		Character[] inputGrid = 
+		{ 
+			'X', 'O', 'X', 
+			'O', 'X', 'X', 
+			'X', 'O', 'O',
+		};
+		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
+
+		// Same grid before new game
+		assertArrayEquals(inputGrid, logic.getGrid());
+		logic.newGame();
+
+		// New grid made
+		assertArrayEquals(new Character[9], logic.getGrid());
+
+		// Tokens switched
+		assertEquals('O', p1.getToken());
+		assertEquals('X', p2.getToken());
+
+		// The other players gets to make the first move now
+		assertEquals(p2, logic.getPlayerWhoHasTurn());
+
+	}
 }

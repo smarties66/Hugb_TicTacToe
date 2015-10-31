@@ -9,6 +9,8 @@ public class TicTacToeLogic {
 	private boolean isPlayer1Turn;
 	private Character[] grid;
 	private Character winnerToken;
+	private final char X = 'X';
+	private final char O = 'O'; 
 	private int[][] possibleWins = 
 	{
 		{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
@@ -38,8 +40,8 @@ public class TicTacToeLogic {
 		
 		this.player1 = player1;
 		this.player2 = player2;
-		this.player1.setToken('X');
-		this.player2.setToken('O');
+		this.player1.setToken(X);
+		this.player2.setToken(O);
 		this.grid = grid;
 		this.isPlayer1Turn = isPlayer1Turn;
 		roundCount = 0;
@@ -112,6 +114,19 @@ public class TicTacToeLogic {
 
 	public TicTacToePlayer getPlayerWhoHasTurn() {
 		return (isPlayer1Turn == true) ? player1 : player2;
+	}
+
+	public void newGame() {
+		grid = new Character[9];
+		tokenCounter = 0;
+		switchPlayerTokens();
+		isPlayer1Turn = (player1.getToken() == X) ? true : false;
+	}
+
+	private void switchPlayerTokens() {
+		char tempToken = player1.getToken();
+		player1.setToken(player2.getToken());
+		player2.setToken(tempToken);
 	}
 
 }
