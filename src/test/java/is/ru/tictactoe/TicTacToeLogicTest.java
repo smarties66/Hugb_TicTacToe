@@ -304,4 +304,12 @@ public class TicTacToeLogicTest {
 		assertEquals(p2, logic.getPlayerWhoHasTurn());
 
 	}
+
+	@Test
+	public void testGetRoundNumber() {
+		TicTacToeLogic logic = defaultLogic();
+		assertEquals(1, logic.getRoundNumber());
+		logic.newGame();
+		assertEquals(2, logic.getRoundNumber());
+	} 
 }

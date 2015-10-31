@@ -44,7 +44,7 @@ public class TicTacToeLogic {
 		this.player2.setToken(O);
 		this.grid = grid;
 		this.isPlayer1Turn = isPlayer1Turn;
-		roundCount = 0;
+		roundCount = 1;
 		tokenCounter = 0;
 	}
 
@@ -121,12 +121,17 @@ public class TicTacToeLogic {
 		tokenCounter = 0;
 		switchPlayerTokens();
 		isPlayer1Turn = (player1.getToken() == X) ? true : false;
+		roundCount++;
 	}
 
 	private void switchPlayerTokens() {
 		char tempToken = player1.getToken();
 		player1.setToken(player2.getToken());
 		player2.setToken(tempToken);
+	}
+
+	public int getRoundNumber() {
+		return roundCount;
 	}
 
 }
