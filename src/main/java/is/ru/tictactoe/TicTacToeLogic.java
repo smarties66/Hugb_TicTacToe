@@ -28,7 +28,7 @@ public class TicTacToeLogic {
 		init(player1, player2, new Character[9], true);
 	}
 
-	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
+	public TicTacToeLogic( TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
 		init(player1, player2, grid, isPlayer1Turn);
 		fixTokenCount();
 		searchForWin();
@@ -132,6 +132,10 @@ public class TicTacToeLogic {
 
 	public int getRoundNumber() {
 		return roundCount;
+	}
+
+	public int getNumberOfDraws() {
+		return (roundCount - 1);
 	}
 
 }

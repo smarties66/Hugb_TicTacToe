@@ -311,5 +311,11 @@ public class TicTacToeLogicTest {
 		assertEquals(1, logic.getRoundNumber());
 		logic.newGame();
 		assertEquals(2, logic.getRoundNumber());
-	} 
+	}
+
+	@Test
+	public void testGetNumberOfDrawsForNewLogic() {
+		TicTacToeLogic logic = defaultLogic();
+		assertEquals(0, logic.getNumberOfDraws());
+	}
 }
