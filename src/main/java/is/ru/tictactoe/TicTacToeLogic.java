@@ -83,9 +83,16 @@ public class TicTacToeLogic {
 
 	private void searchForWin() {
 		for(int[] i : possibleWins) {
-			if(grid[i[0]] != null && grid[i[0]].equals(grid[i[1]]) && grid[i[1]].equals(grid[i[2]]))
+			if(grid[i[0]] != null && grid[i[0]].equals(grid[i[1]]) && grid[i[1]].equals(grid[i[2]])) {
 				winnerToken = grid[i[0]];
+				updateWinnerScore();
+			}
 		}
+	}
+
+	private void updateWinnerScore() {
+		if(winnerToken == null) return;
+		getWinner().incrementWinCount();
 	}
 
 	public TicTacToePlayer getWinner() {
@@ -93,6 +100,14 @@ public class TicTacToeLogic {
 		if(winnerToken != null)
 			return (winnerToken == player1.getToken()) ? player1 : player2;
 		return null; 
+	}
+
+	public int getPlayer1Score() {
+		return player1.getWinCount();
+	}
+
+	public int getPlayer2Score() {
+		return player2.getWinCount();
 	}
 
 }
