@@ -11,6 +11,7 @@ public class TicTacToeLogic {
 	private Character winnerToken;
 	private final char X = 'X';
 	private final char O = 'O'; 
+	private final int GRIDSIZE = 9;
 	private int[][] possibleWins = 
 	{
 		{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
@@ -25,7 +26,7 @@ public class TicTacToeLogic {
 	*******************************/
 
 	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2) {
-		init(player1, player2, new Character[9], true);
+		init(player1, player2, new Character[GRIDSIZE], true);
 	}
 
 	public TicTacToeLogic( TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
@@ -35,7 +36,7 @@ public class TicTacToeLogic {
 	}
 
 	private void init(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
-		if(grid.length != 9)
+		if(grid.length != GRIDSIZE)
 			throw new IllegalArgumentException("TicTacToeGrid must be of size 9. Illegal Size: " + grid.length);
 		
 		this.player1 = player1;
@@ -62,7 +63,7 @@ public class TicTacToeLogic {
 	}
 
 	private void checkIndex(int index) throws SlotAlreadyFilledException {
-		if(index < 0 || index > 8)
+		if(index < 0 || index > GRIDSIZE - 1)
 			throw new IndexOutOfBoundsException("Index of slot ranges between 0 and 8. Invalid index: " + index);
 		else if(grid[index] != null) 
 			throw new SlotAlreadyFilledException("Slot already has token");
@@ -117,7 +118,7 @@ public class TicTacToeLogic {
 	}
 
 	public void newGame() {
-		grid = new Character[9];
+		grid = new Character[GRIDSIZE];
 		tokenCounter = 0;
 		switchPlayerTokens();
 		isPlayer1Turn = (player1.getToken() == X) ? true : false;
@@ -135,7 +136,7 @@ public class TicTacToeLogic {
 	}
 
 	public int getNumberOfDraws() {
-		return (roundCount - 1);
+		return (tokenCounter == GRIDSIZE) ? roundCount : roundCount - 1;
 	}
 
 }
