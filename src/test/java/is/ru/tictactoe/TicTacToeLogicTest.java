@@ -133,4 +133,31 @@ public class TicTacToeLogicTest {
 			assertEquals("TicTacToeGrid must be of size 9. Illegal Size: 7", e.getMessage());
 		}
 	}
+
+	@Test
+	public void testIsWin() {
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+		
+		Character[] inputGrid = 
+		{ 
+			'X', 'O', 'X', 
+			'O', 'O', 'X', 
+			'X', 'X', 'O',
+		};
+
+		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
+
+		assertEquals(false, logic.isWin());
+
+		Character[] inputGrid2 = 
+		{ 
+			'X', 'O', 'X', 
+			'O', 'X', 'X', 
+			'X', 'O', 'O',
+		};
+
+		logic = new TicTacToeLogic(p1, p2, inputGrid2, true);
+		assertEquals(true, logic.isWin());
+	}
 }

@@ -7,6 +7,13 @@ public class TicTacToeLogic {
 	private int roundCount;
 	private boolean isPlayer1Turn;
 	private Character[] grid;
+	private Character winnerToken;
+	private int[][] possibleWins = 
+	{
+		{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+		{0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+		{0, 4, 8}, {2, 4, 6}
+	};
 
 	/******************************
 	[0][1][2]
@@ -20,6 +27,7 @@ public class TicTacToeLogic {
 
 	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
 		init(player1, player2, grid, isPlayer1Turn);
+		searchForWin();
 	}
 
 	private void init(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
@@ -51,6 +59,17 @@ public class TicTacToeLogic {
 			throw new IndexOutOfBoundsException("Index of slot ranges between 0 and 8. Invalid index: " + index);
 		else if(grid[index] != null) 
 			throw new SlotAlreadyFilledException("Slot already has token");
+	}
+
+	public boolean isWin() {
+		return winnerToken != null;
+	}
+
+	private void searchForWin() {
+		for(int[] i : possibleWins) {
+			if(grid[i[0]].equals(grid[i[1]]) && grid[i[1]].equals(grid[i[2]]))
+				winnerToken = grid[i[0]];
+		}
 	}
 
 }
