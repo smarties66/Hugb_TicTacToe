@@ -262,4 +262,17 @@ public class TicTacToeLogicTest {
 		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, false);
 		assertEquals(1, logic.getPlayer1Score());
 	}
+
+	@Test
+	public void testGetPlayerWhoHasTurn() {
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+		TicTacToeLogic logic = new TicTacToeLogic(p1, p2);
+		assertEquals(p1, logic.getPlayerWhoHasTurn());
+
+		try{logic.insertNextTokenToGrid(4);}
+		catch (Exception e) {}
+
+		assertEquals(p2, logic.getPlayerWhoHasTurn());
+	}
 }

@@ -110,4 +110,8 @@ public class TicTacToeLogic {
 		return player2.getWinCount();
 	}
 
+	public TicTacToePlayer getPlayerWhoHasTurn() {
+		return (isPlayer1Turn == true) ? player1 : player2;
+	}
+
 }
