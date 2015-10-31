@@ -5,6 +5,7 @@ public class TicTacToeLogic {
 	private TicTacToePlayer player1;
 	private TicTacToePlayer player2;
 	private int roundCount;
+	private int tokenCounter;
 	private boolean isPlayer1Turn;
 	private Character[] grid;
 	private Character winnerToken;
@@ -27,6 +28,7 @@ public class TicTacToeLogic {
 
 	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
 		init(player1, player2, grid, isPlayer1Turn);
+		fixTokenCount();
 		searchForWin();
 	}
 
@@ -41,6 +43,7 @@ public class TicTacToeLogic {
 		this.grid = grid;
 		this.isPlayer1Turn = isPlayer1Turn;
 		roundCount = 0;
+		tokenCounter = 0;
 	}
 
 	public Character[] getGrid() {
@@ -51,6 +54,7 @@ public class TicTacToeLogic {
 		checkIndex(slotIndex);
 		char token = (isPlayer1Turn == true) ? player1.getToken() : player2.getToken();
 		grid[slotIndex] = token;
+		tokenCounter++;
 		searchForWin();
 		isPlayer1Turn = !isPlayer1Turn;
 	}
@@ -62,8 +66,19 @@ public class TicTacToeLogic {
 			throw new SlotAlreadyFilledException("Slot already has token");
 	}
 
+	private void fixTokenCount() {
+		tokenCounter = 0;
+		for(Character token : grid) {
+			if(token != null) tokenCounter++;
+		}
+	}
+
 	public boolean isWin() {
 		return winnerToken != null;
+	}
+
+	public boolean isDraw() {
+		return tokenCounter == grid.length;
 	}
 
 	private void searchForWin() {

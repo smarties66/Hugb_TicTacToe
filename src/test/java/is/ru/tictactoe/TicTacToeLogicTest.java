@@ -208,4 +208,27 @@ public class TicTacToeLogicTest {
 		logic = new TicTacToeLogic(p1, p2, inputGrid2, true);
 		assertEquals(p1, logic.getWinner());
 	}
+
+	@Test
+	public void testIsDraw() {
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+		//Testing isDraw when game is not over
+		Character[] inputGrid = 
+		{ 
+			'X', 'O', null, 
+			'O', 'X', 'X', 
+			'X', 'O', 'O',
+		};
+
+		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, false);
+		assertEquals(false, logic.isDraw());
+
+		try{
+			logic.insertNextTokenToGrid(2);
+		}catch(Exception e) {}
+		
+		//Testing when game is over and there is draw
+		assertEquals(true, logic.isDraw()); //inserting O
+	}
 }
