@@ -54,6 +54,9 @@ public class TicTacToeLogic {
 	}
 
 	public void insertNextTokenToGrid(int slotIndex){
+		if(isGameOver())
+			throw new GameOverException("Game is over, another token cannot be inserted");
+		
 		checkIndex(slotIndex);
 		char token = (isPlayer1Turn == true) ? player1.getToken() : player2.getToken();
 		grid[slotIndex] = token;
@@ -136,6 +139,10 @@ public class TicTacToeLogic {
 
 	public int getNumberOfDraws() {
 		return (tokenCounter == GRIDSIZE) ? roundCount : roundCount - 1;
+	}
+
+	public boolean isGameOver() {
+		return winnerToken != null || tokenCounter == GRIDSIZE;
 	}
 
 }

@@ -328,4 +328,43 @@ public class TicTacToeLogicTest {
 		logic.newGame();
 		assertEquals(1, logic.getNumberOfDraws());
 	}
+
+
+
+	@Test
+	public void testInsertTokenAfterWinOrDraw() {
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+		
+		Character[] inputGrid = 
+		{ 
+			'X', 'X', 'X', 
+			'O', 'O', 'X', 
+			'X', 'O', null,
+		};
+		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, false);
+
+		try{
+			logic.insertNextTokenToGrid(8);
+			fail("Should have thrown GameOverException");
+		}catch(GameOverException e){
+			assertEquals("Game is over, another token cannot be inserted", e.getMessage());
+		}
+
+		Character[] inputGrid2 = 
+		{ 
+			'X', 'X', 'O', 
+			'O', 'X', 'X', 
+			'X', 'O', 'O',
+		};
+
+		logic = new TicTacToeLogic(p1, p2, inputGrid, false);
+
+		try{
+			logic.insertNextTokenToGrid(8);
+			fail("Should have thrown GameOverException");
+		}catch(GameOverException e){
+			assertEquals("Game is over, another token cannot be inserted", e.getMessage());
+		}
+	}
 }
