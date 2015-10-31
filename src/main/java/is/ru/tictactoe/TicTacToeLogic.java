@@ -84,7 +84,7 @@ public class TicTacToeLogic {
 	}
 
 	public boolean isDraw() {
-		return tokenCounter == grid.length && winnerToken == null;
+		return isGameOver() && winnerToken == null;
 	}
 
 	private void searchForWin() {
