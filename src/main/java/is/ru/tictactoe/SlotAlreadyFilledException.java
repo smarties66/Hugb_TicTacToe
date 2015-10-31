@@ -1,6 +1,6 @@
 package is.ru.tictactoe;
 
-public class SlotAlreadyFilledException extends Exception {
+public class SlotAlreadyFilledException extends RuntimeException {
 	public SlotAlreadyFilledException(String message) {
 		super(message);
 	}

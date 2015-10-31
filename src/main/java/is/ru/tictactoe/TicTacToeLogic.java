@@ -53,7 +53,7 @@ public class TicTacToeLogic {
 		return grid;
 	}
 
-	public void insertNextTokenToGrid(int slotIndex) throws SlotAlreadyFilledException {
+	public void insertNextTokenToGrid(int slotIndex){
 		checkIndex(slotIndex);
 		char token = (isPlayer1Turn == true) ? player1.getToken() : player2.getToken();
 		grid[slotIndex] = token;
@@ -62,7 +62,7 @@ public class TicTacToeLogic {
 		isPlayer1Turn = !isPlayer1Turn;
 	}
 
-	private void checkIndex(int index) throws SlotAlreadyFilledException {
+	private void checkIndex(int index) {
 		if(index < 0 || index > GRIDSIZE - 1)
 			throw new IndexOutOfBoundsException("Index of slot ranges between 0 and 8. Invalid index: " + index);
 		else if(grid[index] != null) 
@@ -99,7 +99,6 @@ public class TicTacToeLogic {
 	}
 
 	public TicTacToePlayer getWinner() {
-
 		if(winnerToken != null)
 			return (winnerToken == player1.getToken()) ? player1 : player2;
 		return null; 

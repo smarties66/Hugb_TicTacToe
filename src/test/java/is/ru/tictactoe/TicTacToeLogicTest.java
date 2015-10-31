@@ -36,10 +36,7 @@ public class TicTacToeLogicTest {
 		};
 
 		TicTacToeLogic logic = defaultLogic();
-		
-		try{
-			logic.insertNextTokenToGrid(4);
-		}catch(SlotAlreadyFilledException e) {}
+		logic.insertNextTokenToGrid(4);
 
 		assertArrayEquals(expectedGrid, logic.getGrid());
 	}
@@ -55,17 +52,13 @@ public class TicTacToeLogicTest {
 
 		TicTacToeLogic logic = defaultLogic();
 		
-		try{
-			logic.insertNextTokenToGrid(4);
-		}catch(SlotAlreadyFilledException e) {}
+		logic.insertNextTokenToGrid(4);
 
 		assertArrayEquals(expectedGrid, logic.getGrid());
 		
 		expectedGrid[8] = 'O';
 		
-		try{
-			logic.insertNextTokenToGrid(8);
-		}catch(SlotAlreadyFilledException e) {}
+		logic.insertNextTokenToGrid(8);
 
 		assertArrayEquals(expectedGrid, logic.getGrid());
 	}
@@ -73,10 +66,7 @@ public class TicTacToeLogicTest {
 	@Test
 	public void testInsertTokenToSlotThatIsNotEmpty() {
 		TicTacToeLogic logic = defaultLogic();
-		
-		try{
-			logic.insertNextTokenToGrid(4);
-		}catch(SlotAlreadyFilledException e) {}
+		logic.insertNextTokenToGrid(4);
 
 		try {
 			logic.insertNextTokenToGrid(4);
@@ -175,9 +165,7 @@ public class TicTacToeLogicTest {
 
 		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
 
-		try{
-			logic.insertNextTokenToGrid(2);
-		}catch(Exception e) {}
+		logic.insertNextTokenToGrid(2);
 
 		assertEquals(true, logic.isWin());
 	}
@@ -223,10 +211,7 @@ public class TicTacToeLogicTest {
 
 		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, false);
 		assertEquals(false, logic.isDraw());
-
-		try{
-			logic.insertNextTokenToGrid(2);
-		}catch(Exception e) {}
+		logic.insertNextTokenToGrid(2);
 		
 		//Testing when game is over and there is draw
 		assertEquals(true, logic.isDraw()); //inserting O
@@ -270,8 +255,7 @@ public class TicTacToeLogicTest {
 		TicTacToeLogic logic = new TicTacToeLogic(p1, p2);
 		assertEquals(p1, logic.getPlayerWhoHasTurn());
 
-		try{logic.insertNextTokenToGrid(4);}
-		catch (Exception e) {}
+		logic.insertNextTokenToGrid(4);
 
 		assertEquals(p2, logic.getPlayerWhoHasTurn());
 	}
