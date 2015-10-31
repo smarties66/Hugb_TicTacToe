@@ -73,4 +73,11 @@ public class TicTacToeLogic {
 		}
 	}
 
+	public TicTacToePlayer getWinner() {
+
+		if(winnerToken != null)
+			return (winnerToken == player1.getToken()) ? player1 : player2;
+		return null; 
+	}
+
 }

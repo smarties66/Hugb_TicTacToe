@@ -181,4 +181,31 @@ public class TicTacToeLogicTest {
 
 		assertEquals(true, logic.isWin());
 	}
+
+	@Test
+	public void testGetWinner() {
+		TicTacToePlayer p1 = new TicTacToePlayer("Player1");
+		TicTacToePlayer p2 = new TicTacToePlayer("Player2");
+		
+		Character[] inputGrid = 
+		{ 
+			'X', 'O', 'X', 
+			'O', 'O', 'X', 
+			'X', 'X', 'O',
+		};
+
+		TicTacToeLogic logic = new TicTacToeLogic(p1, p2, inputGrid, true);
+
+		assertEquals(null, logic.getWinner());
+
+		Character[] inputGrid2 = 
+		{ 
+			'X', 'O', 'X', 
+			'O', 'X', 'X', 
+			'X', 'O', 'O',
+		};
+
+		logic = new TicTacToeLogic(p1, p2, inputGrid2, true);
+		assertEquals(p1, logic.getWinner());
+	}
 }
