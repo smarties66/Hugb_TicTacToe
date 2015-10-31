@@ -307,22 +307,32 @@ public class TicTacToeLogicTest {
 	public void testGetNumberOfDrawsAfterRounds() {
 		TicTacToeLogic logic = defaultLogic();
 
-		try{ // the following inserts will result in a win
-			logic.insertNextTokenToGrid(4);
-			logic.insertNextTokenToGrid(0);
-			logic.insertNextTokenToGrid(1);
-			logic.insertNextTokenToGrid(7);
-			logic.insertNextTokenToGrid(6);
-			logic.insertNextTokenToGrid(2);
-			logic.insertNextTokenToGrid(3);
-			logic.insertNextTokenToGrid(5);
-			logic.insertNextTokenToGrid(8);
-			/*****************************
-			[O][X][O]
-			[X][X][O]
-			[X][O][X] => DRAW
-			******************************/
-		}catch(Exception e) {}
+		//The following inserts will result in a draw
+		logic.insertNextTokenToGrid(4);
+		logic.insertNextTokenToGrid(0);
+		logic.insertNextTokenToGrid(1);
+		logic.insertNextTokenToGrid(7);
+		logic.insertNextTokenToGrid(6);
+		logic.insertNextTokenToGrid(2);
+		logic.insertNextTokenToGrid(3);
+		logic.insertNextTokenToGrid(5);
+		logic.insertNextTokenToGrid(8);
+		/*****************************
+		[O][X][O]
+		[X][X][O]
+		[X][O][X] => DRAW
+		******************************/
+
+		assertEquals(1, logic.getNumberOfDraws());
+		logic.newGame();
+		assertEquals(1, logic.getNumberOfDraws());
+
+		//The following inserts will result in a win
+		logic.insertNextTokenToGrid(0);
+		logic.insertNextTokenToGrid(3);
+		logic.insertNextTokenToGrid(1);
+		logic.insertNextTokenToGrid(4);
+		logic.insertNextTokenToGrid(2);
 
 		assertEquals(1, logic.getNumberOfDraws());
 		logic.newGame();
