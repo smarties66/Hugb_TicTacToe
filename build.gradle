@@ -11,7 +11,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'checkstyle'
-
+apply plugin: 'jacoco'
 
 mainClassName = "is.ru.tictactoe.TicTacToeApp"
 
@@ -45,3 +45,32 @@ jar {
 run {
     standardInput = System.in
 }
+jacoco {
+    applyTo run
+}
+
+jacoco {
+    toolVersion = "0.7.1.201405082137"
+    reportsDir = file("$buildDir/custonjacocoReportDir")
+}
+task applicationCodeCoverageReport(type:JacocoReport){
+    executionData run
+    sourceSets sourceSets.main
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+	csv.enabled false
+	html.destination "${buildDir}/jacocoHtml"
+   }
+}
+
+test {
+   jacoco {
+      append = false
+      destinationFile = file("$buildDir/jacoco/jacocotest.exec")
+      classDumpFile = file("$buildDir/jacoco/classpathdumps")
+   }
+}
+
