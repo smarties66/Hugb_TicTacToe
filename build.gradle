@@ -40,3 +40,7 @@ jar {
         attributes("Main-Class" : "is.ru.tictactoe.TicTacToeApp")
     }
 }
+
+run {
+    standardInput = System.in
+}

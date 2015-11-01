@@ -115,6 +115,14 @@ public class TicTacToeLogic {
 		return player2.getWinCount();
 	}
 
+	public String getPlayer1Name() {
+		return player1.getName();
+	}
+
+	public String getPlayer2Name() {
+		return player2.getName();
+	}
+
 	public TicTacToePlayer getPlayerWhoHasTurn() {
 		return (isPlayer1Turn == true) ? player1 : player2;
 	}
