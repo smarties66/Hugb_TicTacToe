@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+./bin/compile
+./bin/unit_test
+./bin/deploy
