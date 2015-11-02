@@ -14,3 +14,42 @@
         #set($count = $count + 1)
     #end
 </div>
+
+<div id="playerwhohasturn">
+    $playerWhoHasTurn.get(0).player
+<div>
+
+<div id="grid">
+    <table>
+        #set($id = 1)
+        #set($rowCount = 1)
+        #foreach($row in $gridInfo)
+            #if($rowCount == 2)
+                #set($class = "topBottom")
+            #else
+                #set($class = "")
+            #end
+            <tr id="row$rowCount">
+                <td id="$id" class= "square $!class">
+                    #if($row.token1Img.length() > 0)
+                        <img src="$row.token1Img" alt ="tokenImg"/>
+                    #end
+                </td>
+                #set($id = $id + 1)
+                <td id="$id" class= "square sides $!class">
+                    #if($row.token2Img.length() > 0)
+                        <img src="$row.token2Img" alt ="tokenImg"/>
+                    #end
+                </td>
+                #set($id = $id + 1)
+                <td id="$id" class= "square $!class">
+                    #if($row.token3Img.length() > 0)
+                        <img src="$row.token3Img" alt ="tokenImg"/>
+                    #end
+                </td>
+                #set($id = $id + 1)
+            </tr>
+            #set($rowCount = $rowCount + 1)
+        #end
+    </table>
+</div>

@@ -69,7 +69,7 @@ public class TicTacToeWebApp implements SparkApplication {
       return context;
     }
 
-    private void getPlayerInfo(VelocityContext ve) {
+    private void getPlayerInfo(VelocityContext vc) {
       ArrayList playerInfo = new ArrayList();
       Map map = new HashMap();
       map.put("name", logic.getPlayer1Name());
@@ -79,26 +79,33 @@ public class TicTacToeWebApp implements SparkApplication {
       map.put("name", logic.getPlayer2Name());
       map.put("score", logic.getPlayer2Score());
       playerInfo.add(map);
-      ve.put("playerInfo", playerInfo);
+      vc.put("playerInfo", playerInfo);
+      ArrayList playerWhoHasTurn = new ArrayList();
+      map = new HashMap();
+      map.put("player", logic.getPlayerWhoHasTurn().getName());
+      playerWhoHasTurn.add(map);
+      vc.put("playerWhoHasTurn", playerWhoHasTurn);
     }
 
-    private void getGridInfo(VelocityContext ve) {
+    private void getGridInfo(VelocityContext vc) {
       ArrayList gridInfo = new ArrayList();
       Character[] grid = logic.getGrid();
       Map map;
 
-      for(Character token : grid) {
+      for(int i = 0; i < grid.length; i += 3) {
          map = new HashMap();
-         
-         if(token == null)
-            map.put("token", "");
-         else
-            map.put("token", token.toString());
-
+         map.put("token1Img", getTokenImagePath(grid[i]));
+         map.put("token2Img", getTokenImagePath(grid[i + 1]));
+         map.put("token3Img", getTokenImagePath(grid[i + 2]));
          gridInfo.add(map);
       }
 
-      ve.put("gridInfo", gridInfo);
+      vc.put("gridInfo", gridInfo);
+    }
+
+    private String getTokenImagePath(Character token) {
+      if(token == null) return "";
+      return (token == logic.getXToken()) ? "/images/tic-tac-toe-X.png" : "/images/tic-tac-toe-O.png";
     }
 
     private Template getTemplate(String templateName) {
