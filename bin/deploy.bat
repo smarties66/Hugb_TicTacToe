@@ -2,8 +2,7 @@
 set APP=Hugb_TicTacToe
 set LOCATION=C:\temp
 
-REM Always deploy new version, clean before
-call bin\clean.bat
+REM Always deploy new version
 call bin\package.bat
 
 REM If app folder exists under C:\temp, remove it
