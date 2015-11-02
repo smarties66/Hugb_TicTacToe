@@ -21,6 +21,11 @@ repositories {
     jcenter()
 }
 
+sourceSets {
+   selenium
+   seleniumXvfb
+}
+
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
@@ -32,9 +37,9 @@ dependencies {
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
 
-    seleniumCompile 'junit:junit:4.11'
+    seleniumCompile 'junit:junit:4.12'
     seleniumCompile 'org.seleniumhq.selenium:selenium-java:2.48.2'
-    seleniumXvfbCompile 'junit:junit:4.11'
+    seleniumXvfbCompile 'junit:junit:4.12'
     seleniumXvfbCompile 'org.seleniumhq.selenium:selenium-java:2.48.2'
 
     compile 'com.sparkjava:spark-core:2.3'
@@ -58,20 +63,24 @@ task stage {
     dependsOn installDist
 }
 
-task seleniumXvfb(type: Test, dependsOn: installDist) {
- testClassesDir = sourceSets.selenium.output.classesDir
- classpath = sourceSets.selenium.runtimeClasspath
- environment "DISPLAY", ":99"
-  doFirst {
-   'bin/xvfb start'.execute()
-   'build/install/Hugb_TicTacToe/bin/Hugb_TicTacToe&'.execute()
-  }
-  doLast {
-   'sh -e /etc/init.d/xvfb stop'.execute()
-  }
+task selenium(type: Test, dependsOn: installDist) {
+    testClassesDir = sourceSets.selenium.output.classesDir
+    classpath = sourceSets.selenium.runtimeClasspath
 }
 
-sourceSets {
-   selenium
-   seleniumXvfb
+task seleniumXvfb(type: Test, dependsOn: installDist) {
+    testClassesDir = sourceSets.selenium.output.classesDir
+    classpath = sourceSets.selenium.runtimeClasspath
+    
+    environment "DISPLAY", ":99"
+  
+    doFirst {
+     'bin/xvfb start'.execute()
+     'build/install/Hugb_TicTacToe/bin/Hugb_TicTacToe &'.execute()
+    }
+
+    doLast {
+     'sh -e /etc/init.d/xvfb stop'.execute()
+    }
 }
+
