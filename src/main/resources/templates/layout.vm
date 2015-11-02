@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TicTacToe</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- load bootstrap for nicer ui -->
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            $template
+        </div>
+
+        <!-- Load jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+        <!-- script-->
+        <script>
+            $(document).ready(function(){
+                var playButton = $('#playbutton');
+
+                $(playbutton).attr({'disabled' : true});
+
+                $('#player1name, #player2name').on('change', function(){
+                    if($('#player1name').val().length > 0 && $('#player2name').val().length > 0){
+                        $(playbutton).removeAttr('disabled');
+                    }
+                    else{
+                        $(playbutton).attr({'disabled' : true});   
+                    }
+                });
+
+            });
+        </script>
+    </body>
+</html>

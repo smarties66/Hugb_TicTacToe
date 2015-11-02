@@ -1,0 +1,9 @@
+<h1 class="header">Tic-Tac-Toe</h1>
+
+<form method="get" action="/play" class="form-inline" role="form">
+	<label for="player1name">Player1</label>
+	<input type="text" id="player1name" class="form-control" name="p1name">
+	<label for="player2name">Player2</label>
+	<input type="text" id="player2name" class="form-control" name="p2name">
+	<button id="playbutton" type="submit" class="btn btn-default">Play</button>
+</form>
