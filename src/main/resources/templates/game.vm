@@ -1,0 +1,16 @@
+#set($count = 1)
+<div id="gamestats">
+    #foreach( $player in $playerInfo)
+        <div id="player$count" class="playerinfo">
+            
+            <div class="pname">
+                $player.get("name")
+            </div>
+
+            <div class="pscore">
+                $player.get("score") 
+            </div>
+        </div>
+        #set($count = $count + 1)
+    #end
+</div>
