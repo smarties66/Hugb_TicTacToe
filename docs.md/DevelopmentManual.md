@@ -1,8 +1,8 @@
 # Development manual
 
 ##Source Control##
-If you don't already have git installed on your machine you can install it by run this command : sudo apt-get install git-core
-Next up you have to clone the git repository : git clone https://github.com/smarties66/Hugb_TicTacToe.git
+If you don't already have git installed on your machine you can install it by running this command in the command line: sudo apt-get install git-core
+Next you have to clone the git repository : git clone https://github.com/smarties66/Hugb_TicTacToe.git
 
 ##Build Environment##
 You will need to clone this repository to Ubuntu Linux machine or Mac OS.
