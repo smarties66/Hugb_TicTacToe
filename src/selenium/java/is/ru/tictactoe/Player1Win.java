@@ -25,8 +25,20 @@ public class Player1Win {
   @Test
   public void testPlayer1Win() throws Exception {
     driver.get(baseUrl + "/");
+    for (int second = 0;; second++) {
+    	if (second >= 60) fail("timeout");
+    	try { if (isElementPresent(By.id("player1name"))) break; } catch (Exception e) {}
+    	Thread.sleep(1000);
+    }
+
     driver.findElement(By.id("player1name")).clear();
     driver.findElement(By.id("player1name")).sendKeys("Ágúst");
+    for (int second = 0;; second++) {
+    	if (second >= 60) fail("timeout");
+    	try { if (isElementPresent(By.id("player2name"))) break; } catch (Exception e) {}
+    	Thread.sleep(1000);
+    }
+
     driver.findElement(By.id("player2name")).clear();
     driver.findElement(By.id("player2name")).sendKeys("Andri");
     driver.findElement(By.id("playbutton")).click();
