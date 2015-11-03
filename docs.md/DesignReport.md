@@ -1,3 +1,5 @@
+![alt text](https://github.com/smarties66/Hugb_TicTacToe/docs,md/default_white.png)
+
 # DesignReport
 
 ##1.  Inngangur##
