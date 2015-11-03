@@ -86,3 +86,8 @@ task seleniumXvfb(type: Test, dependsOn: installDist) {
     }
 }
 
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
