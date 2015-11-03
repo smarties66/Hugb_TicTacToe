@@ -11,7 +11,7 @@ Við smíð verkefnisins var notast við Git samstæðustjórnun til að hýsa k
 Verkefnið var unnið í “Test Driven Development” þar sem próf voru skrifuð fyrir hvert fall og engum kóða var pushað nema hann hafi staðist einingaprófun. Unnið var útfrá “Gitflow Workflow” við þróun leiksins.
 
 ##3.	 Forritunarreglur##
-Verkefnið verður skrifað í Java forritunarmálinu og fylgja skal eftirfarandi forritunarreglum:
+Verkefnið var skrifað í Java forritunarmálinu og fylgja átti eftirfarandi forritunarreglum:
 
 a)	Slaufusvigar falla skulu alltaf opnast í sömu línu og yfirlýsing falla, klasa og lykkja
 
