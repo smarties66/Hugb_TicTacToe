@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>TicTacToeLogic.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Hugb_TicTacToe</a> &gt; <a href="index.source.html" class="el_package">is.ru.tictactoe</a> &gt; <span class="el_source">TicTacToeLogic.java</span></div><h1>TicTacToeLogic.java</h1><pre class="source lang-java linenums">package is.ru.tictactoe;
+
+public class TicTacToeLogic {
+
+	private TicTacToePlayer player1;
+	private TicTacToePlayer player2;
+	private int roundCount;
+	private int tokenCounter;
+	private boolean isPlayer1Turn;
+	private Character[] grid;
+	private Character winnerToken;
+<span class="fc" id="L12">	private final char X = 'X';</span>
+<span class="fc" id="L13">	private final char O = 'O'; </span>
+<span class="fc" id="L14">	private final int GRIDSIZE = 9;</span>
+<span class="fc" id="L15">	private int[][] possibleWins = </span>
+	{
+		{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+		{0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+		{0, 4, 8}, {2, 4, 6}
+	};
+
+	/******************************
+	[0][1][2]
+	[3][4][5]
+	[6][7][8]
+	*******************************/
+
+<span class="fc" id="L28">	public TicTacToeLogic(TicTacToePlayer player1, TicTacToePlayer player2) {</span>
+<span class="fc" id="L29">		init(player1, player2, new Character[GRIDSIZE], true);</span>
+<span class="fc" id="L30">	}</span>
+
+<span class="fc" id="L32">	public TicTacToeLogic( TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {</span>
+<span class="fc" id="L33">		init(player1, player2, grid, isPlayer1Turn);</span>
+<span class="fc" id="L34">		fixTokenCount();</span>
+<span class="fc" id="L35">		searchForWin();</span>
+<span class="fc" id="L36">	}</span>
+
+	private void init(TicTacToePlayer player1, TicTacToePlayer player2, Character[] grid, boolean isPlayer1Turn) {
+<span class="fc bfc" id="L39" title="All 2 branches covered.">		if(grid.length != GRIDSIZE)</span>
+<span class="fc" id="L40">			throw new IllegalArgumentException(&quot;TicTacToeGrid must be of size 9. Illegal Size: &quot; + grid.length);</span>
+		
+<span class="fc" id="L42">		this.player1 = player1;</span>
+<span class="fc" id="L43">		this.player2 = player2;</span>
+<span class="fc" id="L44">		this.player1.setToken(X);</span>
+<span class="fc" id="L45">		this.player2.setToken(O);</span>
+<span class="fc" id="L46">		this.grid = grid;</span>
+<span class="fc" id="L47">		this.isPlayer1Turn = isPlayer1Turn;</span>
+<span class="fc" id="L48">		roundCount = 1;</span>
+<span class="fc" id="L49">		tokenCounter = 0;</span>
+<span class="fc" id="L50">	}</span>
+
+	public Character[] getGrid() {
+<span class="fc" id="L53">		return grid;</span>
+	}
+
+	public void insertNextTokenToGrid(int slotIndex){
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		if(isGameOver())</span>
+<span class="fc" id="L58">			throw new GameOverException(&quot;Game is over, another token cannot be inserted&quot;);</span>
+
+<span class="fc" id="L60">		checkIndex(slotIndex);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">		char token = (isPlayer1Turn == true) ? player1.getToken() : player2.getToken();</span>
+<span class="fc" id="L62">		grid[slotIndex] = token;</span>
+<span class="fc" id="L63">		tokenCounter++;</span>
+<span class="fc" id="L64">		searchForWin();</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">		isPlayer1Turn = !isPlayer1Turn;</span>
+<span class="fc" id="L66">	}</span>
+
+	private void checkIndex(int index) {
+<span class="pc bpc" id="L69" title="1 of 4 branches missed.">		if(index &lt; 0 || index &gt; GRIDSIZE - 1)</span>
+<span class="fc" id="L70">			throw new IndexOutOfBoundsException(&quot;Index of slot ranges between 0 and 8. Invalid index: &quot; + index);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		else if(grid[index] != null) </span>
+<span class="fc" id="L72">			throw new SlotAlreadyFilledException(&quot;Slot already has token&quot;);</span>
+<span class="fc" id="L73">	}</span>
+
+	private void fixTokenCount() {
+<span class="fc" id="L76">		tokenCounter = 0;</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">		for(Character token : grid) {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">			if(token != null) tokenCounter++;</span>
+		}
+<span class="fc" id="L80">	}</span>
+
+	public boolean isWin() {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		return winnerToken != null;</span>
+	}
+
+	public boolean isDraw() {
+<span class="fc bfc" id="L87" title="All 4 branches covered.">		return isGameOver() &amp;&amp; winnerToken == null;</span>
+	}
+
+	private void searchForWin() {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		for(int[] i : possibleWins) {</span>
+<span class="fc bfc" id="L92" title="All 6 branches covered.">			if(grid[i[0]] != null &amp;&amp; grid[i[0]].equals(grid[i[1]]) &amp;&amp; grid[i[1]].equals(grid[i[2]])) {</span>
+<span class="fc" id="L93">				winnerToken = grid[i[0]];</span>
+<span class="fc" id="L94">				updateWinnerScore();</span>
+			}
+		}
+<span class="fc" id="L97">	}</span>
+
+	private void updateWinnerScore() {
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		if(winnerToken == null) return;</span>
+<span class="fc" id="L101">		getWinner().incrementWinCount();</span>
+<span class="fc" id="L102">	}</span>
+
+	public TicTacToePlayer getWinner() {
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		if(winnerToken != null)</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">			return (winnerToken == player1.getToken()) ? player1 : player2;</span>
+<span class="fc" id="L107">		return null; </span>
+	}
+
+	public int getPlayer1Score() {
+<span class="fc" id="L111">		return player1.getWinCount();</span>
+	}
+
+	public int getPlayer2Score() {
+<span class="nc" id="L115">		return player2.getWinCount();</span>
+	}
+
+	public String getPlayer1Name() {
+<span class="nc" id="L119">		return player1.getName();</span>
+	}
+
+	public String getPlayer2Name() {
+<span class="nc" id="L123">		return player2.getName();</span>
+	}
+
+	public TicTacToePlayer getPlayerWhoHasTurn() {
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		return (isPlayer1Turn == true) ? player1 : player2;</span>
+	}
+
+	public void newGame() {
+<span class="fc" id="L131">		grid = new Character[GRIDSIZE];</span>
+<span class="fc" id="L132">		tokenCounter = 0;</span>
+<span class="fc" id="L133">		switchPlayerTokens();</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">		isPlayer1Turn = (player1.getToken() == X) ? true : false;</span>
+<span class="fc" id="L135">		winnerToken = null;</span>
+<span class="fc" id="L136">		roundCount++;</span>
+<span class="fc" id="L137">	}</span>
+
+	private void switchPlayerTokens() {
+<span class="fc" id="L140">		char tempToken = player1.getToken();</span>
+<span class="fc" id="L141">		player1.setToken(player2.getToken());</span>
+<span class="fc" id="L142">		player2.setToken(tempToken);</span>
+<span class="fc" id="L143">	}</span>
+
+	public int getRoundNumber() {
+<span class="fc" id="L146">		return roundCount;</span>
+	}
+
+	public int getNumberOfDraws() {
+<span class="fc bfc" id="L150" title="All 2 branches covered.">		int completedRoundCount = (isGameOver() == true) ? roundCount : roundCount - 1;</span>
+<span class="fc" id="L151">		return completedRoundCount - (player1.getWinCount() + player2.getWinCount());</span>
+	}
+
+	public boolean isGameOver() {
+<span class="fc bfc" id="L155" title="All 4 branches covered.">		return winnerToken != null || tokenCounter == GRIDSIZE;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
