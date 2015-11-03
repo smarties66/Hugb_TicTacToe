@@ -1,4 +1,4 @@
-# DesignReport
+# Design Report
 
 ##1.  Inngangur##
 Tilgangur skýrslunnar er að gera grein fyrir þeim hönnunarákvörðunum sem áttu sér stað við þróun verkefnisins TicTacToe. 
