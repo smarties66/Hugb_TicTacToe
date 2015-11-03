@@ -2,22 +2,28 @@
 <div id="gamestats">
     #foreach( $player in $playerInfo)
         <div id="player$count" class="playerinfo">
-            
-            <div class="pname">
-                $player.get("name")
-            </div>
+            <h4>Player $count</h4>
+            <p>
+                Name : 
+                <span class="pname">
+                    $player.get("name")
+                </span>
+            </p>
 
-            <div class="pscore">
-                $player.get("score") 
-            </div>
+            <p>
+                Score :
+                <span class="pscore">
+                    $player.get("score") 
+                </span>
+            </p>
         </div>
         #set($count = $count + 1)
     #end
 </div>
 
 <div id="playerwhohasturn">
-    $playerWhoHasTurn.get(0).player
-<div>
+    <p><span id="pturn">$playerWhoHasTurn.get(0).player</span> make your move.</p>
+</div>
 
 <div id="grid">
     <table>

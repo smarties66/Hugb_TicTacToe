@@ -10,11 +10,14 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import static spark.Spark.*;
 import spark.servlet.SparkApplication;
+import org.json.simple.JSONObject;
 
 
 public class TicTacToeWebApp implements SparkApplication {
 
    private TicTacToeLogic logic;
+   String XImage = "/images/tic-tac-toe-X.png";
+   String OImage = "/images/tic-tac-toe-O.png";
 
    public static void main(String[] args) {
    		
@@ -43,7 +46,21 @@ public class TicTacToeWebApp implements SparkApplication {
             TicTacToePlayer p1 =  new TicTacToePlayer(req.queryParams("p1name"));
             TicTacToePlayer p2 =  new TicTacToePlayer(req.queryParams("p2name"));
             logic = new TicTacToeLogic(p1, p2);
-            return getPage("game", getGameInfo());
+            return getPage("game",getGameInfo());
+         });
+
+         post("/turn", "application/json",(req, res) -> {
+            int gridIndex = Integer.parseInt(req.queryParams("index"));
+            JSONObject obj = new JSONObject();
+            obj.put("tokenImg", makeMove(gridIndex));
+            obj.put("playerWhoHasTurn", logic.getPlayerWhoHasTurn().getName());
+            obj.put("isGameOver", logic.isGameOver());
+            obj.put("isDraw", logic.isDraw());
+            obj.put("isWin", logic.isWin());
+            obj.put("p1Score", logic.getPlayer1Score());
+            obj.put("p2Score", logic.getPlayer2Score());
+            obj.put("numberOfDraws", logic.getNumberOfDraws());
+            return obj;
          });
     }
 
@@ -80,6 +97,7 @@ public class TicTacToeWebApp implements SparkApplication {
       map.put("score", logic.getPlayer2Score());
       playerInfo.add(map);
       vc.put("playerInfo", playerInfo);
+      
       ArrayList playerWhoHasTurn = new ArrayList();
       map = new HashMap();
       map.put("player", logic.getPlayerWhoHasTurn().getName());
@@ -105,12 +123,25 @@ public class TicTacToeWebApp implements SparkApplication {
 
     private String getTokenImagePath(Character token) {
       if(token == null) return "";
-      return (token == logic.getXToken()) ? "/images/tic-tac-toe-X.png" : "/images/tic-tac-toe-O.png";
+      return (token == logic.getXToken()) ? XImage : OImage;
     }
 
     private Template getTemplate(String templateName) {
       VelocityEngine ve = new VelocityEngine();
       ve.init();
       return ve.getTemplate("./src/main/resources/templates/" + templateName + ".vm");
+    }
+
+    private String makeMove(int gridIndex) {
+
+      try{
+
+        Character token = logic.getPlayerWhoHasTurn().getToken();
+        logic.insertNextTokenToGrid(gridIndex);
+        return getTokenImagePath(token);
+
+      }catch(RuntimeException e) {
+         return "";
+      }
     }
 }
