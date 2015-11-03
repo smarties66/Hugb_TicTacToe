@@ -1,6 +1,5 @@
 package com.example.tests;
 
-
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -15,16 +14,11 @@ public class Player1Win {
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-  static String port;
 
   @Before
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-	port = System.getenv("PORT");
-	if(port == null) {
-		port = "4567";
-	}
-    baseUrl = "http://localhost:" + port;
+    baseUrl = "https://web-smarties-tictactoe.herokuapp.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
@@ -42,35 +36,35 @@ public class Player1Win {
     	Thread.sleep(1000);
     }
 
-    // ERROR: Caught exception [ERROR: Unsupported command [clickAt | id=4 | ]]
+    driver.findElement(By.id("4")).click();
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
     	try { if (isElementPresent(By.cssSelector("#4 > img[alt=\"tokenImg\"]"))) break; } catch (Exception e) {}
     	Thread.sleep(1000);
     }
 
-    // ERROR: Caught exception [ERROR: Unsupported command [clickAt | id=2 | ]]
+    driver.findElement(By.id("2")).click();
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
     	try { if (isElementPresent(By.cssSelector("#2 > img[alt=\"tokenImg\"]"))) break; } catch (Exception e) {}
     	Thread.sleep(1000);
     }
 
-    // ERROR: Caught exception [ERROR: Unsupported command [clickAt | id=6 | ]]
+    driver.findElement(By.id("6")).click();
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
     	try { if (isElementPresent(By.cssSelector("#6 > img[alt=\"tokenImg\"]"))) break; } catch (Exception e) {}
     	Thread.sleep(1000);
     }
 
-    // ERROR: Caught exception [ERROR: Unsupported command [clickAt | id=3 | ]]
+    driver.findElement(By.id("3")).click();
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
     	try { if (isElementPresent(By.cssSelector("#3 > img[alt=\"tokenImg\"]"))) break; } catch (Exception e) {}
     	Thread.sleep(1000);
     }
 
-    // ERROR: Caught exception [ERROR: Unsupported command [clickAt | id=5 | ]]
+    driver.findElement(By.id("5")).click();
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
     	try { if (isElementPresent(By.cssSelector("#5 > img[alt=\"tokenImg\"]"))) break; } catch (Exception e) {}
