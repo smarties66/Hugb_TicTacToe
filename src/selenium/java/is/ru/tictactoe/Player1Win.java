@@ -10,7 +10,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Agustwin {
+public class Player1Win {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -29,7 +29,7 @@ public class Agustwin {
   }
 
   @Test
-  public void testAgustwin() throws Exception {
+  public void testPlayer1Win() throws Exception {
     driver.get(baseUrl + "/");
     driver.findElement(By.id("player1name")).clear();
     driver.findElement(By.id("player1name")).sendKeys("Ágúst");
