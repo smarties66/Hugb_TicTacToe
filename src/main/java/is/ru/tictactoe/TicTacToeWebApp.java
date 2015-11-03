@@ -71,6 +71,10 @@ public class TicTacToeWebApp implements SparkApplication {
           obj.put("isWin", logic.isWin());
           obj.put("p1Score", logic.getPlayer1Score());
           obj.put("p2Score", logic.getPlayer2Score());
+
+          TicTacToePlayer winner = logic.getWinner();
+
+          obj.put("winnerName", (winner != null) ? winner.getName() : "");
           obj.put("numberOfDraws", logic.getNumberOfDraws());
           return obj;
         });

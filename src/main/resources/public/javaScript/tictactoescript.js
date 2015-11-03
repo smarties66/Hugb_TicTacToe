@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 				if(obj.isWin == true) {
 					var nameTag = $('<span id="pturn"></span>');
-					$(nameTag).append(getWinnerName());
+					$(nameTag).append(obj.winnerName);
 					$("#playerwhohasturn").html("");
 					var p = $("<p></p>");
 					$(p).append(nameTag);
@@ -41,21 +41,6 @@ $(document).ready(function() {
 			$("#newgamebtn").removeAttr("disabled");
 		});
 	});
-
-
-	function getWinnerName() {
-		var p1Score = $("#player1 .pscore").html();
-		var p2Score = $("#player2 .pscore").html();
-		
-		if(parseInt(p1Score) != parseInt(p2Score)) {
-			if(parseInt(p1Score) > parseInt(p2Score)) 
-				return $("#player1 .pname").text();
-
-			return $("#player2 .pname").text();
-		}
-
-		return "";
-	}
 
 	$("#newgamebtn").on("click", function(){
 		$.post("/newgame", function(data) {
