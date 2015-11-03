@@ -1,4 +1,12 @@
 language: java
-
 jdk:
-  - oraclejdk8
+- oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: M2izvvenSWVxJuUr2NMhRJcp2hyRyIOkfvpWMuF4FXqOncvzR7YdUAR6MehRzb8pHAnTDukxGUDPU4jCggT5gWn6tuoA+Pd/2aU1+1i7pltSLuJvKRFnB0udG3Czds0hDIvIkUVR1p0Sdg8G0ja5Oq5XV0hCqXpOemFx+fu72czhRL+/rYAKPfRua+RGSOMcz7UMfD7CMkRJeqjXFsXnzc6CtwBwjxBn1PYxWgtDBLNDJZxLQAAyBGT12/0FaLMWt26B8r2f5YkVpzJMpsN6G3sMXp9OLbNN+qJUxe0q3Mnzige3Gl0SkZfJRKRgHvKafwYorVAukoIl4eJEqOIivdgkXI8sKNfxxM0yjyhFEPeN6E+TbKjoy1GIj109fJ7MYs12nGFkM12mJ75HgGdHO2CPIM6DRnShlXVOdDh8vzIXDI7KfVUQrM5G9vOm4HJOV5EiM6eruGHHELUVZbpRYEOxK1hSyKko9hylRpQSjWLg/YKtaMwjMn2Dfw0xLvb4JbAL+pyjkgF/OZwAr2aqLrUY7vznAwMPbGoQjIBu92fmbycBapwaxrgc+QhiGMbdO73m4pwsRkH9DrIdl9QBzhQEDlmNkZ+tT6Hid65lYO9bcurUL2xrfnCP1qoHn6Ajvrx3TCA9Sq+s6F9bkj/Qa+qcFEd9ikZYZI87eIFrwXc=
+    app: web-smarties-tictactoe
+
+script:
+   - ./gradlew check
+   - ./gradlew seleniumXvfb

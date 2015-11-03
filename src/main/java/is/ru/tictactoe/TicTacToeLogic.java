@@ -155,4 +155,11 @@ public class TicTacToeLogic {
 		return winnerToken != null || tokenCounter == GRIDSIZE;
 	}
 
+	public char getXToken() {
+		return X;
+	}
+
+	public char getOToken() {
+		return O;
+	}
 }
