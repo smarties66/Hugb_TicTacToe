@@ -1,4 +1,4 @@
-![alt text](/Pics/default_white.png)
+![alt text](../Pics/default_white.png)
 
 # DesignReport
 
