@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 public class Player1Win {
   private WebDriver driver;
   private String baseUrl;
+  private static String port;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   static String port;
