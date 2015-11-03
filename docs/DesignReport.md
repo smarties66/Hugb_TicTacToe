@@ -8,12 +8,12 @@ Við smíð verkefnisins verður notast við Git samstæðustjórnun til að hý
 
 Próf verða skrifuð fyrir hvert fall og verkefnið þannig unnið í “test driven development”. Engum kóða verður pushað fyrr en hann hefur staðist einingaprófun.
 Unnið verður útfrá “Gitflow Workflow” þar sem notast er við tvö branch til að skrá sögu verkefnisins. Master branch sem heldur utan um sögu tilbúinna útgáfa og develop sem þjónar þeim tilgangi að samþátta fídusa(features), en nýtt branch er
-búið til útfrá develop fyrir hvern fídus. Þegar allir fídusar eru tilbúnir fyrir næstu útgáfu er búið til branch útfrá develop til að fínpússa verkefnið og að lokum er þetta branch samþáttað við master og gefið útgáfu númer.
+búið til útfrá develop fyrir hvern fídus. 
+
+Þegar allir fídusar eru tilbúnir fyrir næstu útgáfu er búið til branch útfrá develop til að fínpússa verkefnið og að lokum er þetta branch samþáttað við master og gefið útgáfu númer.
 Búa verður til pull-request áður en branch er samþáttað.
 
-##3.	Forritunarmál & Tól##
-
-##3.1.	 Forritunarreglur##
+##3	 Forritunarreglur##
 Verkefnið verður skrifað í Java forritunarmálinu og fylgja skal eftirfarandi forritunarreglum:
 
 a)	Slaufusvigar falla skulu alltaf opnast í sömu línu og yfirlýsing falla, klasa og lykkja
