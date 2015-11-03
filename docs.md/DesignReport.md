@@ -1,4 +1,4 @@
-![alt text](https://github.com/smarties66/Hugb_TicTacToe/docs,md/default_white.png)
+![alt text](https://github.com/smarties66/Hugb_TicTacToe/Pics/default_white.png)
 
 # DesignReport
 
