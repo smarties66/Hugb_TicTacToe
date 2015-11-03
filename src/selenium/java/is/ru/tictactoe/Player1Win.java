@@ -14,12 +14,17 @@ public class Player1Win {
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
+  static String port;
 
   @Before
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-    baseUrl = "https://web-smarties-tictactoe.herokuapp.com/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    port = System.getenv("PORT");
+        if(port == null) {
+            port = "4567";
+        }
+        baseUrl = "http://localhost:" + port;
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
@@ -45,6 +50,12 @@ public class Player1Win {
     for (int second = 0;; second++) {
     	if (second >= 60) fail("timeout");
     	try { if (isElementPresent(By.id("pturn"))) break; } catch (Exception e) {}
+    	Thread.sleep(1000);
+    }
+
+    for (int second = 0;; second++) {
+    	if (second >= 60) fail("timeout");
+    	try { if (isElementPresent(By.id("4"))) break; } catch (Exception e) {}
     	Thread.sleep(1000);
     }
 
