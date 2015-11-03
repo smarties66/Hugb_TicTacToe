@@ -9,10 +9,17 @@ Next you have to clone the git repository : `git clone https://github.com/smarti
 You will need to clone this repository to Ubuntu Linux machine or Mac OS.
 
 Other things you will need are:
-- [Oraclejdk8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Oracle JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Gradle](http://gradle.org/gradle-download/)
+- [Travis CI] ()
+- [Heroku] ()
+
+You will need Oracle JDK 8 to be able to compile the project.
 
 Gradle will handle installations of all dependecies.
 
-Since the project is using [Travis continuous integration](https://travis-ci.org/) you can log in there using your github account. Using Travis is not necessary but highly recommended.
+Travis is our continous integration tool, that runs build and test files that are in the project.
+
+Heroku is for continous delivery tool that deploys the project if all Travis builds and tests pass.
+
 
