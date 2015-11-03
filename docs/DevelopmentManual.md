@@ -1,4 +1,4 @@
-# Development manual
+# Development Manual
 
 ##Source Control##
 If you don't already have git installed on your machine you can install it by running this command in the command line: `sudo apt-get install git-core`.
