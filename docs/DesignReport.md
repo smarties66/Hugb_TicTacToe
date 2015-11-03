@@ -38,11 +38,10 @@ e)	 Þegar breytur eru sendar inn í föll skal ekki fylgja bil eftir að svigi 
 Til að byrja með fórum við yfir það helsta sem þyrfti til að útfæra tic-tac-toe:
 
 * **Leikborð**
-    * 1|2|3
-      -----
-    * 4|5|6
-      -----
-    * 7|8|9
+    | 1 | 2 | 3 |
+    |---|---|---|
+    | 4 | 5 | 6 |
+    | 7 | 8 | 9 |
     * Geymt í einföldum Array
 
 * **Leikmenn**
