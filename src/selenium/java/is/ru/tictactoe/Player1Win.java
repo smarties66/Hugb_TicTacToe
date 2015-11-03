@@ -18,7 +18,11 @@ public class Player1Win {
   @Before
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-    baseUrl = "https://web-smarties-tictactoe.herokuapp.com/";
+    port = System.getenv("PORT");
+        if(port == null) {
+            port = "4567";
+        }
+    baseUrl = "http://localhost:" + port;
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
