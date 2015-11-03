@@ -2,6 +2,10 @@
 
 APP="Hugb_TicTacToe"
 
+rm -rf ~/smarties/Hugb_TicTacToe/CodeCoverage
+mkdir CodeCoverage
+
+mv build/jacoco build/jacocohtml build/reports build/test-results ~/smarties/Hugb_TicTacToe/CodeCoverage
 # Always deploy new version, clean before
 bin/clean
 bin/package
