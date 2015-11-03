@@ -5,7 +5,7 @@
 Play a simple console game of TicTacToe with your friends, or by yourself, we won't judge.
 
 ##Documentation##
-The documentation available as of the date of this release is included in HTML format in the docs/manual/ directory
+The documentation available as of the date of this release is included in HTML format in the docs/ directory
 
 ##Installation##
 Please see the file called INSTALL.
