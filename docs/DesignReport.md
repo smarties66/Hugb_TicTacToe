@@ -1,17 +1,20 @@
 # DesignReport
 
 ##1.  Inngangur##
-Tilgangur skírslunnar er að gera grein fyrir þeim hönnunarákvörðunum sem áttu sér stað við þróun verkefnisins TicTacToe. Markmið verkefisins var að hanna TicTacToe leik, fyrst keyrandi í console glugga og svo yfirfæra yfir á vafraform. Leikurinn þarf að vera keyranlegur á öllum windows vélum. 
+Tilgangur skýrslunnar er að gera grein fyrir þeim hönnunarákvörðunum sem áttu sér stað við þróun verkefnisins TicTacToe. Markmið verkefisins er að hanna TicTacToe leik, fyrst keyrandi í console glugga og svo yfirfæra yfir á vafraform. 
 
-##2.  Þróunarumhverfi##
-Við smíð verkefnisins var notast var við Git samstæðustjórnun til að deila kóða á milli einstaklinga. Notast var við hýsiþjónustuna Github.com og er kóðinn geymdur þar. 
+##2.  Þróunarumhverfi og vinnuflæði##
+Við smíð verkefnisins verður notast við Git samstæðustjórnun til að hýsa kóðann og deila kóða á milli einstaklinga. 
 
-Test driven development - Próf voru skrifuð fyrir hvert fall og verkefnið þannig unnið í “test driven development”. Engum kóða var pushað á master-branch nema það hafði staðist einingaprófin.
+Próf verða skrifuð fyrir hvert fall og verkefnið þannig unnið í “test driven development”. Engum kóða verður pushað fyrr en hann hefur staðist einingaprófun.
+Unnið verður útfrá “Gitflow Workflow” þar sem notast er við tvö branch til að skrá sögu verkefnisins. Master branch sem heldur utan um sögu tilbúinna útgáfa og develop sem þjónar þeim tilgangi að samþátta fídusa(features), en nýtt branch er
+búið til útfrá develop fyrir hvern fídus. Þegar allir fídusar eru tilbúnir fyrir næstu útgáfu er búið til branch útfrá develop til að fínpússa verkefnið og að lokum er þetta branch samþáttað við master og gefið útgáfu númer.
+Búa verður til pull-request áður en branch er samþáttað.
 
 ##3.	Forritunarmál & Tól##
 
 ##3.1.	 Forritunarreglur##
-Verkefnið er skrifað í Java forritunarmálinu og í upphafi tamdi hópurinn sér nokkrar forritunarreglur.
+Verkefnið verður skrifað í Java forritunarmálinu og fylgja skal eftirfarandi forritunarreglum:
 
 a)	Slaufusvigar falla skulu alltaf opnast í sömu línu og yfirlýsing falla, klasa og lykkja
 
