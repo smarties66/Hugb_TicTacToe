@@ -28,6 +28,9 @@ $(document).ready(function() {
 					$("#playerwhohasturn").append(p);
 				}
 			}
+			else{
+				$("#pturn").html(obj.playerWhoHasTurn);
+			}
 		});
 	});
 

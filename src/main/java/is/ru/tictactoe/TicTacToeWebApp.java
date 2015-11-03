@@ -18,6 +18,7 @@ public class TicTacToeWebApp implements SparkApplication {
    private TicTacToeLogic logic;
    String XImage = "/images/tic-tac-toe-X.png";
    String OImage = "/images/tic-tac-toe-O.png";
+   boolean isInitialized = false;
 
    public static void main(String[] args) {
    		
@@ -37,31 +38,42 @@ public class TicTacToeWebApp implements SparkApplication {
 
       String layout = "templates/layout.vtl";
 
-         get("/", (req, res) -> {
-            logic = null;
-            return getPage("index", new VelocityContext());
+        get("/", (req, res) -> {
+          logic = null;
+          isInitialized = false;
+          return getPage("index", new VelocityContext());
+        });
+
+        before("/play", (req, res) -> {
+          String p1Name = req.queryParams("p1name");
+          String p2Name = req.queryParams("p2name");
+
+          if(p1Name == null || p1Name.equals("") || p2Name == null || p2Name.equals(""))
+            res.redirect("/", 301);
+        });
+
+        get("/play", (req, res) -> {
+          String p1Name = req.queryParams("p1name");
+          String p2Name = req.queryParams("p2name");
+          TicTacToePlayer p1 =  new TicTacToePlayer(p1Name);
+          TicTacToePlayer p2 =  new TicTacToePlayer(p2Name);
+          logic = new TicTacToeLogic(p1, p2);
+          return getPage("game", getGameInfo());
          });
 
-         get("/play", (req, res) -> {
-            TicTacToePlayer p1 =  new TicTacToePlayer(req.queryParams("p1name"));
-            TicTacToePlayer p2 =  new TicTacToePlayer(req.queryParams("p2name"));
-            logic = new TicTacToeLogic(p1, p2);
-            return getPage("game",getGameInfo());
-         });
-
-         post("/turn", "application/json",(req, res) -> {
-            int gridIndex = Integer.parseInt(req.queryParams("index"));
-            JSONObject obj = new JSONObject();
-            obj.put("tokenImg", makeMove(gridIndex));
-            obj.put("playerWhoHasTurn", logic.getPlayerWhoHasTurn().getName());
-            obj.put("isGameOver", logic.isGameOver());
-            obj.put("isDraw", logic.isDraw());
-            obj.put("isWin", logic.isWin());
-            obj.put("p1Score", logic.getPlayer1Score());
-            obj.put("p2Score", logic.getPlayer2Score());
-            obj.put("numberOfDraws", logic.getNumberOfDraws());
-            return obj;
-         });
+        post("/turn", "application/json",(req, res) -> {
+          int gridIndex = Integer.parseInt(req.queryParams("index"));
+          JSONObject obj = new JSONObject();
+          obj.put("tokenImg", makeMove(gridIndex));
+          obj.put("playerWhoHasTurn", logic.getPlayerWhoHasTurn().getName());
+          obj.put("isGameOver", logic.isGameOver());
+          obj.put("isDraw", logic.isDraw());
+          obj.put("isWin", logic.isWin());
+          obj.put("p1Score", logic.getPlayer1Score());
+          obj.put("p2Score", logic.getPlayer2Score());
+          obj.put("numberOfDraws", logic.getNumberOfDraws());
+          return obj;
+        });
     }
 
     private String getPage(String pageName, VelocityContext context) {
