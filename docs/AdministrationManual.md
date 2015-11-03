@@ -7,7 +7,7 @@ You must have oracle jdk 8 java installed on your machine.
 
 ###Deploy###
 
-Once you have unzipped the file, you can run the game using the command `./bin/run`
-You might have to make the bin/run file executable, using the command `chmod +x  bin/run`
+The project is deployed every time a build succeeds.
+
 
 

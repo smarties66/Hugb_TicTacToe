@@ -1,0 +1,69 @@
+.header {
+  font-family: 'Dancing Script', serif;
+  font-size: 60px;
+  text-shadow: 4px 4px 4px #aaa;
+}
+
+.square{
+    width:150px;
+    height:150px;
+}
+
+.sides{
+    border-left:2px solid #184B9A;
+    border-right:2px solid #184B9A;
+}
+
+.topBottom{
+    border-top:2px solid #184B9A;
+    border-bottom:2px solid #184B9A;
+}
+
+.invisible {
+    visibility:hidden;
+}
+.visible {
+    visibility:visible;
+}
+
+#container{
+    text-align:center;
+}
+
+#newGame{
+	text-align:center;
+	font-family: 'Dancing Script', serif;
+	font-size: 30px;
+	text-shadow: 2px 2px 2px #aaa;
+}
+
+#grid {
+    display: inline-block;
+    margin-top:2%;
+}
+
+table {
+    background: linear-gradient(#E2EBF1, #92C1DC);
+    text-align:center;
+    font: 'Dancing Script', serif;
+}
+
+td > img {
+    width: 100%;
+}
+
+#gamestatconatainer {
+    width: 250px;
+    float: left;
+}
+
+.playerinfo {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.btncontainer-center {
+    width: 100%;
+    margin: 15px auto;
+    padding-left: 40%;
+}

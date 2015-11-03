@@ -13,13 +13,18 @@ apply plugin: 'application'
 apply plugin: 'jacoco'
 
 
-mainClassName = "is.ru.tictactoe.TicTacToeApp"
+mainClassName = "is.ru.tictactoe.TicTacToeWebApp"
 
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use 'jcenter' for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+}
+
+sourceSets {
+   selenium
+   seleniumXvfb
 }
 
 // In this section you declare the dependencies for your production and test code
@@ -32,13 +37,24 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
+
+    seleniumCompile 'junit:junit:4.12'
+    seleniumCompile 'org.seleniumhq.selenium:selenium-java:2.48.2'
+    seleniumXvfbCompile 'junit:junit:4.12'
+    seleniumXvfbCompile 'org.seleniumhq.selenium:selenium-java:2.48.2'
+
+    compile 'com.sparkjava:spark-core:2.3'
+    compile group: 'org.apache.velocity', name: 'velocity', version: '1.7'
+    compile 'com.google.code.gson:gson:2.2.+'
+    compile 'com.googlecode.json-simple:json-simple:1.1'
+
 }
 
 
 
 jar {
     manifest {
-        attributes("Main-Class" : "is.ru.tictactoe.TicTacToeApp")
+        attributes("Main-Class" : "is.ru.tictactoe.TicTacToeWebApp")
     }
 }
 
@@ -46,6 +62,37 @@ run {
     standardInput = System.in
 }
 
+
+task stage {
+    dependsOn installDist
+}
+
+task selenium(type: Test, dependsOn: installDist) {
+    testClassesDir = sourceSets.selenium.output.classesDir
+    classpath = sourceSets.selenium.runtimeClasspath
+}
+
+task seleniumXvfb(type: Test, dependsOn: installDist) {
+    testClassesDir = sourceSets.selenium.output.classesDir
+    classpath = sourceSets.selenium.runtimeClasspath
+    
+    environment "DISPLAY", ":99"
+  
+    doFirst {
+     'bin/xvfb start'.execute()
+     'build/install/Hugb_TicTacToe/bin/Hugb_TicTacToe &'.execute()
+    }
+
+    doLast {
+     'sh -e /etc/init.d/xvfb stop'.execute()
+    }
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+	}
+}
 jacoco {
   toolVersion = "0.7.1.201405082137"
   reportsDir = file("$buildDir/customJacocoReportDir")
