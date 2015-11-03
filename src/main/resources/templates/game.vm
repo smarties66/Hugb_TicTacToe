@@ -19,6 +19,7 @@
         </div>
         #set($count = $count + 1)
     #end
+    <div>Draws: <span id="ndraws">0</span></div>
 </div>
 
 <div id="playerwhohasturn">
@@ -59,3 +60,4 @@
         #end
     </table>
 </div>
+<button id="newgamebtn" class="btn">New Game</button>

@@ -74,6 +74,13 @@ public class TicTacToeWebApp implements SparkApplication {
           obj.put("numberOfDraws", logic.getNumberOfDraws());
           return obj;
         });
+
+        post("/newgame", "application/json", (req, res) -> {
+          logic.newGame();
+          JSONObject obj = new JSONObject();
+          obj.put("playerWhoHasTurn", logic.getPlayerWhoHasTurn().getName());
+          return obj;
+        });
     }
 
     private String getPage(String pageName, VelocityContext context) {

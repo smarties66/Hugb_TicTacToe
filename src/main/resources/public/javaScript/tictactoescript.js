@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	$("#newgamebtn").attr({ "disabled" : true });
+
 	$(".square").on("click", function(){
 		var gridIndex = $(this).attr("id") - 1;
 		var tokenSlot = $(this);
@@ -27,10 +29,16 @@ $(document).ready(function() {
 					$(p).append(" won!");
 					$("#playerwhohasturn").append(p);
 				}
+				else{
+					$("#playerwhohasturn").html("its a Draw!");
+					$("#ndraws").html(obj.numberOfDraws);
+				}	
 			}
 			else{
 				$("#pturn").html(obj.playerWhoHasTurn);
 			}
+
+			$("#newgamebtn").removeAttr("disabled");
 		});
 	});
 
@@ -48,4 +56,21 @@ $(document).ready(function() {
 
 		return "";
 	}
+
+	$("#newgamebtn").on("click", function(){
+		$.post("/newgame", function(data) {
+			var obj = JSON.parse(data);
+			$("#newgamebtn").attr({"disabled" : true});
+			$(".square").html("");
+
+			var nameTag = $('<span id="pturn"></span>');
+			$(nameTag).append(obj.playerWhoHasTurn);
+			$("#playerwhohasturn").html("");
+			var p = $("<p></p>");
+			$(p).append(nameTag);
+			$(p).append(" make your move.");
+			$("#playerwhohasturn").append(p);
+		});
+	});
+
 });
