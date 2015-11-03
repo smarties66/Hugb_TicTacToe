@@ -1,29 +1,33 @@
-#set($count = 1)
-<div id="gamestats">
-    #foreach( $player in $playerInfo)
-        <div id="player$count" class="playerinfo">
-            <h4>Player $count</h4>
-            <p>
-                Name : 
-                <span class="pname">
-                    $player.get("name")
-                </span>
-            </p>
+<div id="gamestatconatainer">
+    #set($count = 1)
+    <div id="gamestats">
+        #foreach( $player in $playerInfo)
+            <div id="player$count" class="playerinfo">
+                <h4>Player $count</h4>
+                <p>
+                    Name : 
+                    <span class="pname">
+                        $player.get("name")
+                    </span>
+                </p>
 
-            <p>
-                Score :
-                <span class="pscore">
-                    $player.get("score") 
-                </span>
-            </p>
+                <p>
+                    Score :
+                    <span class="pscore">
+                        $player.get("score") 
+                    </span>
+                </p>
+            </div>
+            #set($count = $count + 1)
+        #end
+    </div>
+
+    <div id="gameinfo">
+        <div id="playerwhohasturn">
+            <p><span id="pturn">$playerWhoHasTurn.get(0).player</span> make your move.</p>
         </div>
-        #set($count = $count + 1)
-    #end
-    <div>Draws: <span id="ndraws">0</span></div>
-</div>
-
-<div id="playerwhohasturn">
-    <p><span id="pturn">$playerWhoHasTurn.get(0).player</span> make your move.</p>
+        <div id="drawinfo">Draws: <span id="ndraws">0</span></div>
+    </div>
 </div>
 
 <div id="grid">
@@ -59,5 +63,7 @@
             #set($rowCount = $rowCount + 1)
         #end
     </table>
+    <div class="btncontainer-center">
+        <button id="newgamebtn" class="btn">New Game</button>
+    </div>
 </div>
-<button id="newgamebtn" class="btn">New Game</button>

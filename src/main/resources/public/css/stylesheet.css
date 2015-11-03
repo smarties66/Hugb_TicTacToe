@@ -51,3 +51,19 @@ table {
 td > img {
     width: 100%;
 }
+
+#gamestatconatainer {
+    width: 250px;
+    float: left;
+}
+
+.playerinfo {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.btncontainer-center {
+    width: 100%;
+    margin: 15px auto;
+    padding-left: 40%;
+}
