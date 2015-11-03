@@ -32,13 +32,13 @@ $(document).ready(function() {
 				else{
 					$("#playerwhohasturn").html("its a Draw!");
 					$("#ndraws").html(obj.numberOfDraws);
-				}	
+				}
+
+				$("#newgamebtn").removeAttr("disabled");	
 			}
 			else{
 				$("#pturn").html(obj.playerWhoHasTurn);
 			}
-
-			$("#newgamebtn").removeAttr("disabled");
 		});
 	});
 
