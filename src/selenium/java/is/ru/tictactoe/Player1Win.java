@@ -15,7 +15,6 @@ public class Player1Win {
   private static String port;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-  static String port;
 
   @Before
   public void setUp() throws Exception {
