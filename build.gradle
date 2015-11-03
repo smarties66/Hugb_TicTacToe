@@ -123,6 +123,5 @@ test {
        append = false
        destinationFile = file("$buildDir/jacoco/jacocotest.exec")
        classDumpFile = file("$buildDir/jacoco/classpathdumps")
-	 develop
     }
 }
