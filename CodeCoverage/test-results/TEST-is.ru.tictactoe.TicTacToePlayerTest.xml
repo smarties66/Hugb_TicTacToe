@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="is.ru.tictactoe.TicTacToePlayerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2015-11-02T19:45:15" hostname="i-7f3b5dd9.csd07cloud.internal" time="0.004">
+  <properties/>
+  <testcase name="testIncrementWinCount" classname="is.ru.tictactoe.TicTacToePlayerTest" time="0.003"/>
+  <testcase name="testGetName" classname="is.ru.tictactoe.TicTacToePlayerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

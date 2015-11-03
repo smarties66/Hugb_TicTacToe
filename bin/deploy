@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+APP="Hugb_TicTacToe"
+
+rm -rf ~/smarties/Hugb_TicTacToe/CodeCoverage
+mkdir CodeCoverage
+
+mv build/jacoco build/jacocohtml build/reports build/test-results ~/smarties/Hugb_TicTacToe/CodeCoverage
+# Always deploy new version, but clean first
+bin/clean
+bin/package
+
+# If the installation folder exists under /tmp, remove it
+test -f /tmp/${APP} && rm -r /tmp/${APP}
+cp -r build/install/${APP} /tmp
+
+# Run application once
+/tmp/${APP}/bin/${APP}
