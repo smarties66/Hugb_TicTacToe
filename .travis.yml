@@ -5,7 +5,7 @@ deploy:
   provider: heroku
   api_key:
     secure: PogQj1MUy3geDLIw36DvfbYolBs4Lt3pAakudI0mF7Tsirzeor6pXi0ujxdOAQEpgrPa+hHThhPpgJBo5COJWK91mgQN6lJvdn9f8y+yLSRXsUDMH+bg3VftRxe+NC0lW3ZR1gq7Ar1o8ZA7Ambq0YznjLuClH7k4+7X/RLctVmegZKM+qbBaZ4H0LYvrQTl6H8e/Q69eLVu8IdxqqA+PK9bsf3YqfseFaVPRaJHgR15Sqyh0BjPAPpliaehyMAm0ptJZdyOl51SmUY8335v8MnK1aFcwJmaL6Y2AiJEeSuFcn/V2KOm8WfQekxG0y10Hv1UScA45xCc/ajlusHiNTmICYbguuIPp/VUspXHsFQP8fo4j8VQujqx06TTfgmg1e5bjBhJGumNTk67vVO1CXR3VVTuh8im1M8xFdBBKCFtJp0OJPOXoYyyopI7mXp48+pBkgCg2w/oDbe72jbeJNnln+pXIeZGNbu691Corc4sQ8NCQemZIGAFnP3On0ZADVdqv8oBck6GQz6FknjdmfKrunWhFF0ZnCnQXDcD4eGM7P4aU9AERaI8y5uMtkPNWVxAkv2AlJcwSEhrJxWyxWDLUTQiD7bzmF9FWCuWY81+A7PkQGpfciiORcDcUXIKpEfU9tsp4Csi/Oi4P23P0ftSa3Lnodrdmeuyp+KxdmI=
-	app: web-smarties-tictactoe
+     app: web-smarties-tictactoe
 script:
 - "./gradlew check"
 - "./gradlew seleniumXvfb"
