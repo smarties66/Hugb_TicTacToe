@@ -12,6 +12,7 @@ Test driven development - Próf voru skrifuð fyrir hvert fall og verkefnið þa
 
 ##3.1.	 Forritunarreglur##
 Verkefnið er skrifað í Java forritunarmálinu og í upphafi tamdi hópurinn sér nokkrar forritunarreglur.
+
 a)	Slaufusvigar falla skulu alltaf opnast í sömu línu og yfirlýsing falla, klasa og lykkja
 
 b)	Undanþága er gerð á slaufusvigum við upphafsstillingu breyta
