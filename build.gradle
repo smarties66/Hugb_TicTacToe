@@ -10,6 +10,7 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'jacoco'
 
 
 mainClassName = "is.ru.tictactoe.TicTacToeWebApp"
@@ -61,6 +62,7 @@ run {
     standardInput = System.in
 }
 
+
 task stage {
     dependsOn installDist
 }
@@ -89,5 +91,38 @@ task seleniumXvfb(type: Test, dependsOn: installDist) {
 test {
     testLogging {
         exceptionFormat = 'full'
+	}
+}
+jacoco {
+  toolVersion = "0.7.1.201405082137"
+  reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacoco {
+   applyTo run
+}
+
+task applicationCodeCoverageReport(type:JacocoReport) {
+   executionData run
+   sourceSets sourceSets.main
+}
+
+jacocoTestReport {
+     reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocohtml"
+     }
+  group = "Reporting"
+  description = "Generate Jacoco coverage reports after running tests."
+  additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+}
+
+test {
+    jacoco {
+       append = false
+       destinationFile = file("$buildDir/jacoco/jacocotest.exec")
+       classDumpFile = file("$buildDir/jacoco/classpathdumps")
+	 develop
     }
 }
