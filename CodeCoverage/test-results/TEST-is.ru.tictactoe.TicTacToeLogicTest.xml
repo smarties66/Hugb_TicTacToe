@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="is.ru.tictactoe.TicTacToeLogicTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2015-11-02T19:45:15" hostname="i-7f3b5dd9.csd07cloud.internal" time="0.02">
+<testsuite name="is.ru.tictactoe.TicTacToeLogicTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2015-11-05T11:23:14" hostname="C3P0" time="0.015">
   <properties/>
-  <testcase name="testInsertOneTokenToGrid" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.002"/>
+  <testcase name="testInsertOneTokenToGrid" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.015"/>
   <testcase name="testScoreUpdatesOnWin" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testIsDrawWhenThereIsWin" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testIsWin" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testInitWithInvalidSizeGrid" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testInsertTokenToSlotThatIsNotEmpty" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
-  <testcase name="testGetNumberOfDrawsAfterRounds" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.001"/>
+  <testcase name="testGetNumberOfDrawsAfterRounds" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testSetTicTacToeLogicStateConstructor" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testGetGrid" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
-  <testcase name="testInsertTokenAfterWinOrDraw" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.001"/>
+  <testcase name="testInsertTokenAfterWinOrDraw" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testInsertTokenOutOfBounds" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testIsDraw" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
-  <testcase name="testGetNumberOfDrawsForNewLogic" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.003"/>
-  <testcase name="testNewGame" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.001"/>
-  <testcase name="testGetPlayerWhoHasTurn" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.001"/>
+  <testcase name="testGetNumberOfDrawsForNewLogic" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
+  <testcase name="testNewGame" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
+  <testcase name="testGetPlayerWhoHasTurn" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testInsertTwoTokensToGrid" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testGetWinner" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
   <testcase name="testIsWinWithInsert" classname="is.ru.tictactoe.TicTacToeLogicTest" time="0.0"/>
